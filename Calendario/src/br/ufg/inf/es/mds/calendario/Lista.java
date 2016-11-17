@@ -2,6 +2,10 @@ package br.ufg.inf.es.mds.calendario;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Murilo Oliveira
+ */
 public class Lista {
     
     private ArrayList<String> eventos = new ArrayList();
