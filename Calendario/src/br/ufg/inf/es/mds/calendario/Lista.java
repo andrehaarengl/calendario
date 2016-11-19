@@ -34,7 +34,7 @@ public class Lista {
                 break;
         }
     }
-
+    
     public String getDataEvento(String palavra, int regional) {
         ArrayList<String> dataPesquisada = new ArrayList();
         String s,todosEventos = "";
@@ -77,11 +77,14 @@ public class Lista {
             default:
                 break;
         }
-
+        
         for (i = 0; i < getTamanhoLista(dataPesquisada); i++) {
-            StringBuilder frase = new StringBuilder();
-            todosEventos = (frase.append(dataPesquisada.get(i)).append(";")
-                    .toString());
+            System.out.println(dataPesquisada.get(i));
+        }
+        StringBuilder frase = new StringBuilder();
+        for (i = 0; i < getTamanhoLista(dataPesquisada); i++) {
+            todosEventos = frase.append(dataPesquisada.get(i)).append(";")
+                    .toString();
         }
         if ("".equals(todosEventos)){
             return "1";
@@ -89,7 +92,63 @@ public class Lista {
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;
     }
-
+    //Sobrecarga
+    public String getDataEvento(String palavra, int regional, int ano) {
+        ArrayList<String> dataPesquisada = new ArrayList();
+        String s,todosEventos = "";
+        s = palavra;
+        s = s.toUpperCase();
+        String[] dadosComSplit;
+        int i;
+        switch (regional) {
+            case 0: 
+                for (i = 0; i < getTamanhoLista(eventosGoiania); i++) {
+                    dadosComSplit = eventosGoiania.get(i).split(";");
+                    if (dadosComSplit[1].toUpperCase().contains(s)) {
+                    dataPesquisada.add(dadosComSplit[0]);
+                    }
+                }
+                break;
+            case 1:
+                for (i = 0; i < getTamanhoLista(eventosGoias); i++) {
+                    dadosComSplit = eventosGoias.get(i).split(";");
+                    if (dadosComSplit[1].toUpperCase().contains(s)) {
+                    dataPesquisada.add(dadosComSplit[0]);
+                    }
+                }
+                break;
+            case 2:
+                for (i = 0; i < getTamanhoLista(eventosJatai); i++) {
+                    dadosComSplit = eventosJatai.get(i).split(";");
+                    if (dadosComSplit[1].toUpperCase().contains(s)) {
+                    dataPesquisada.add(dadosComSplit[0]);
+                    }
+                }
+            case 3:
+                for (i = 0; i < getTamanhoLista(eventosCatalao); i++) {
+                    dadosComSplit = eventosCatalao.get(i).split(";");
+                    if (dadosComSplit[1].toUpperCase().contains(s)) {
+                    dataPesquisada.add(dadosComSplit[0]);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        StringBuilder frase = new StringBuilder();
+        for (i = 0; i < getTamanhoLista(dataPesquisada); i++) {
+            if ((Integer.parseInt(dataPesquisada.get(i)) % 10000) == ano){
+            todosEventos = (frase.append(dataPesquisada.get(i)).append(";")
+                    .toString());
+            }
+        }
+        if ("".equals(todosEventos)){
+            return "1";
+        }
+        String subString = todosEventos.substring(0,todosEventos.length() - 1);
+        return subString;
+    }
+    
     public String getStringEvento (String data, int regional) {
         ArrayList<String> eventoPesquisado = new ArrayList();
         String todosEventos = "";
@@ -131,8 +190,8 @@ public class Lista {
             default:
                 break;
         }
+        StringBuilder frase = new StringBuilder();
         for (i = 0; i < getTamanhoLista(eventoPesquisado); i++) {
-            StringBuilder frase = new StringBuilder();
             todosEventos = (frase.append(eventoPesquisado.get(i)).append(";")
                     .toString());
         }
@@ -142,7 +201,7 @@ public class Lista {
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;
     }
-
+    
     public int getTamanhoLista(ArrayList lista) {
         int tamanho = lista.size();
         return tamanho;

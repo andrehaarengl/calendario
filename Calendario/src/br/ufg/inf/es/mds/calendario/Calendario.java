@@ -57,9 +57,9 @@ public class Calendario {
         if(numRegional == 99){
             throw new Exception(" O nome da regional digitado é inválido ");
         }
-        try{
-        control.adicionaAno(ano,numRegional);
-        anoCalendario = ano;
+        try {
+            control.adicionaAno(ano,numRegional);
+            anoCalendario = ano;
         } catch(Exception e) {
             System.out.println(" Escolha um ano diferente. ");
         }
