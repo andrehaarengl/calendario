@@ -7,7 +7,7 @@ package br.ufg.inf.es.mds.calendario;
 import java.util.Scanner;
 
 /**
- * @author Murillo Nunes
+ * @author Paulo Sales, Murillo Nunes
  * @since Novembro de 2016
  * @version 1.0
  */
@@ -16,6 +16,17 @@ public class Administrador {
     private final String username = "admin";
     private final String password = "ufg1234";
 
+    /**
+     * O método 'autentica' compara as strings entradas pelo usuário para ter
+     * acesso com o login e senha do Administrador do programa.
+     *
+     * @param usuario este deve ser compatível ao 'username' da classe
+     * Administrador.
+     *
+     * @param senha este deve ser compatível com a senha da mesma classe.
+     *
+     * @return booleano para retornar se a comparação deu certo ou não.
+     */
     public boolean autentica(String usuario, String senha) {
         if (usuario.equalsIgnoreCase(username)) {
             if (senha.equalsIgnoreCase(password)) {
@@ -28,6 +39,12 @@ public class Administrador {
         }
     }
 
+    /**
+     * O método 'login' confere login e senha para o acesso do Administrador do
+     * calendário.
+     *
+     * @return boolean usado para permitir acesso ou negar.
+     */
     public int login() {
         Administrador admin = new Administrador();
         String login;
