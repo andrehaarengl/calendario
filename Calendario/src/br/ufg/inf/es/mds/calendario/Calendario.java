@@ -25,6 +25,27 @@ public class Calendario {
         return numRegional;
     }
     
+    public String getNomeRegional() {
+        int regional = 0;
+        String nome = "";
+        switch(regional) {
+            case 0:
+                nome = "Goiânia";
+                break;
+            case 1:
+                nome = "Goiás";
+                break;
+            case 2:
+                nome = "Jataí";
+                break;
+            case 3:
+                nome = "Catalão";
+                break;
+        }
+        
+        return nome;
+    }
+    
     private int anoCalendario;
     
     private int numRegional;
