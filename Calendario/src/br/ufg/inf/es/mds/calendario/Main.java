@@ -91,7 +91,7 @@ public class Main {
                             System.out.println("\nO que deseja fazer agora?");
                             break;
                         case 4:
-                            //pesquisa por nome do evento.
+                            //pesquisa por nome do evento. test
                     }
                     
                     Main.menuPrincipal();
