@@ -33,22 +33,28 @@ public class Controle {
      * @throws Exception Caso já exista um calendário para este ano na mesma
      * regional ocorre uma exceção.
      */
+
     public void adicionaAno(int ano, int regional) throws Exception {
         int x;
         boolean anoRepetido = false;
-        for (x = 0; x <= posicao; x++) {
-            if (vetorAno[x] == ano && vetorRegional[x] == regional){
-                anoRepetido = true;
-            }
-        }
-        
-        if (anoRepetido == false) {
+        if(posicao == 0){
             vetorAno[posicao] = ano;
             vetorRegional[posicao] = regional;
-            posicao++;    
+            posicao++;
         } else {
-            throw new Exception("O calendário deste ano"
-                    + " para esta regional já foi criado!");
+            for(x = 0; x < posicao; x++){
+                if(vetorAno[x] == ano && vetorRegional[x] == regional){
+                    anoRepetido = true;
+                }
+            }
+            if (anoRepetido == false) {
+                vetorAno[posicao] = ano;
+                vetorRegional[posicao] = regional;
+                posicao++;
+            } else {
+                throw new Exception("O calendário deste ano para esta regional"
+                        + " já foi criado!");
+            }
         }
     }
 }
