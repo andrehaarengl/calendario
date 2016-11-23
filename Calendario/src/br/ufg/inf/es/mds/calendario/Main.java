@@ -41,7 +41,7 @@ public class Main {
                 }
                 
                 System.out.println("\nAgora você está logado como"
-                        + "Administrador.");
+                        + " Administrador.");
                 Main.menuPrincipal();
                 opcaoDoMenu = Integer.parseInt(ler.nextLine());
                 while (opcaoDoMenu == 1 || opcaoDoMenu == 2) {
@@ -61,6 +61,8 @@ public class Main {
                             System.out.println("\nO que deseja fazer agora?");
                             break;
                         case 2:
+                            System.out.println("Digite a data do evento:");
+                            String data = "";
                             //continua
                     }
                     
