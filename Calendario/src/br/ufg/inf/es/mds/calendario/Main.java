@@ -7,7 +7,7 @@ package br.ufg.inf.es.mds.calendario;
 import java.util.Scanner;
 
 /**
- * @author Paulo Sales, Murillo Nunes
+ * @author Paulo Sales, Murillo Nunes, Andre Haarengl
  * @since Novembro de 2016
  * @version 1.2
  */
@@ -21,6 +21,7 @@ public class Main {
         System.out.println(" Para entrar como usuário, digite 1");
         System.out.println(" Para entrar como administrador, digite 2");
         System.out.println(" Para encerrar o programa, digite 5");
+        Lista novaLista = new Lista();
         Scanner ler = new Scanner(System.in);
         int opcaoDeEntrada;
         Administrador admin = new Administrador();
@@ -44,7 +45,8 @@ public class Main {
                         + " Administrador.");
                 Main.menuPrincipal();
                 opcaoDoMenu = Integer.parseInt(ler.nextLine());
-                while (opcaoDoMenu == 1 || opcaoDoMenu == 2) {
+                while (opcaoDoMenu == 1 || opcaoDoMenu == 2 ||
+                        opcaoDoMenu == 3) {
                     switch(opcaoDoMenu) {
                         case 1:
                             System.out.println(
@@ -62,8 +64,34 @@ public class Main {
                             break;
                         case 2:
                             System.out.println("Digite a data do evento:");
-                            String data = "";
-                            //continua
+                            String data = ler.nextLine();
+                            while (!Data.validaData(data)) {
+                                System.out.println("Data inválida. Digite"
+                                        + " novamente:");
+                                data = ler.nextLine();
+                            }
+                            System.out.println("Digite o nome do evento:");
+                            String evento = ler.nextLine();
+                            System.out.println("Digite o nome da regional:");
+                            String regionalDoEvento = ler.nextLine();
+                            novaLista.setEvento(data, evento, regionalDoEvento);
+                            System.out.println("Evento adicionado!");
+                            System.out.println("\nO que deseja fazer agora?");
+                            break;
+                        case 3:
+                            System.out.println("Digite a data do evento:");
+                            String dataDaPesquisa = ler.nextLine();
+                            System.out.println("Digite o nome da regional:");
+                            String regionalDaPesquisa = ler.nextLine();
+                            System.out.println("    Eventos encontrados para"
+                                    + " essa data:\n" +
+                                    novaLista.getStringEvento(
+                                            dataDaPesquisa,
+                                            regionalDaPesquisa));
+                            System.out.println("\nO que deseja fazer agora?");
+                            break;
+                        case 4:
+                            //pesquisa por nome do evento.
                     }
                     
                     Main.menuPrincipal();
@@ -88,7 +116,8 @@ public class Main {
         System.out.println("\nOpções disponíveis:\n"
                 + "1 - Criar um novo calendário\n"
                 + "2 - Adicionar um evento a um calendário\n"
-                + "3 - opção 3\n"
+                + "3 - Pesquisar data\n"
+                + "4 - Pesquisar evento\n"
                 + "Digite o número correspondente à opção desejada:");
     }
     
