@@ -129,6 +129,8 @@ public class Main {
                                                     nomeDoEventoDaBusca,
                                                     regionalDoEventoDaBusca,
                                                     anoDaBusca));
+                                } else {
+                                    System.out.println("Opção inválida!");
                                 }
                             }
                     }
