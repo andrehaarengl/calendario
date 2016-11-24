@@ -190,8 +190,9 @@ public class Lista {
         }
         StringBuilder frase = new StringBuilder();
         for (i = 0; i < getTamanhoLista(dataPesquisada); i++) {
-            if ((Integer.parseInt(dataPesquisada.get(i)) % 10000) == ano){
-            todosEventos = (frase.append(dataPesquisada.get(i)).append(";")
+            dadosComSplit = dataPesquisada.get(i).split("/");
+            if (Integer.parseInt(dadosComSplit[2]) == ano){
+                todosEventos = (frase.append(dataPesquisada.get(i)).append(";")
                     .toString());
             }
         }
