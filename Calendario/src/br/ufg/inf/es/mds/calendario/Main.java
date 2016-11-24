@@ -46,7 +46,7 @@ public class Main {
                 Main.menuPrincipal();
                 opcaoDoMenu = Integer.parseInt(ler.nextLine());
                 while (opcaoDoMenu == 1 || opcaoDoMenu == 2 ||
-                        opcaoDoMenu == 3) {
+                        opcaoDoMenu == 3 || opcaoDoMenu == 4) {
                     switch(opcaoDoMenu) {
                         case 1:
                             System.out.println(
@@ -91,7 +91,46 @@ public class Main {
                             System.out.println("\nO que deseja fazer agora?");
                             break;
                         case 4:
-                            //pesquisa por nome do evento. test
+                            String nomeDoEventoDaBusca = "";
+                            String regionalDoEventoDaBusca = "";
+                            int anoDaBusca = 0;
+                            System.out.println("Você pode buscar um evento de"
+                                    + " duas formas:\n"
+                                    + "1 - Em todos os anos de calendários"
+                                    + " existentes\n"
+                                    + "2 - Em um ano específico\n"
+                                    + "Digite o número correspondente à opção"
+                                    + " desejada:");
+                            int opcaoDaBusca = Integer.parseInt(ler.nextLine());
+                            if (opcaoDaBusca == 1) {
+                                System.out.println("Digite o nome do evento:");
+                                nomeDoEventoDaBusca = ler.nextLine();
+                                System.out.println("Digite o nome da regional"
+                                        + " do evento:");
+                                regionalDoEventoDaBusca = ler.nextLine();
+                                System.out.println("Datas encontradas:\n" +
+                                        novaLista.getDataEvento(
+                                                nomeDoEventoDaBusca,
+                                                regionalDoEventoDaBusca));
+                            } else {
+                                if (opcaoDaBusca == 2) {
+                                    System.out.println("Digite o nome do"
+                                            + " evento:");
+                                    nomeDoEventoDaBusca = ler.nextLine();
+                                    System.out.println("Digite o nome da"
+                                            + " regional do evento:");
+                                    regionalDoEventoDaBusca = ler.nextLine();
+                                    System.out.println("Digite o ano do"
+                                            + " evento:");
+                                    anoDaBusca = Integer.parseInt(
+                                            ler.nextLine());
+                                    System.out.println("Datas encontradas:\n" +
+                                            novaLista.getDataEvento(
+                                                    nomeDoEventoDaBusca,
+                                                    regionalDoEventoDaBusca,
+                                                    anoDaBusca));
+                                }
+                            }
                     }
                     
                     Main.menuPrincipal();

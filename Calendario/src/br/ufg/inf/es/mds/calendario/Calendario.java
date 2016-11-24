@@ -74,7 +74,7 @@ public class Calendario {
         String c2 = "jataí";
         String d2 = "catalão";
         //usar toLowerCase//
-        String comparaRegional = (regional.toLowerCase());
+        String comparaRegional = regional.toLowerCase();
         if ((comparaRegional.equals(a)) || (comparaRegional.equals(a2))){
             numRegional = 0; // Goiania
         }

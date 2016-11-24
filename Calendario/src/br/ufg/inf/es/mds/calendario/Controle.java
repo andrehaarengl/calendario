@@ -57,4 +57,22 @@ public class Controle {
             }
         }
     }
+    
+    /**
+     * Este método serve para ao adicionar as datas e os eventos, 
+     * verificar se o calendário onde está sendo adicionado existe,
+     * caso existir o método retorna true
+     * caso não existir o método retorna false.
+     * @param ano Ano do evento à ser adicionado.
+     * @param regional Reginal do evento à ser adicionado.
+     */
+    public boolean verificaAnoExistente(int ano, int regional) {
+        int x;
+        for(x = 0; x < posicao; x++){
+            if(vetorAno[x] == ano && vetorRegional[x] == regional){
+                return true;
+            }
+        }
+        return false;
+    }
 }
