@@ -191,9 +191,17 @@ public class Lista {
         StringBuilder frase = new StringBuilder();
         for (i = 0; i < getTamanhoLista(dataPesquisada); i++) {
             dadosComSplit = dataPesquisada.get(i).split("/");
-            if (Integer.parseInt(dadosComSplit[2]) == ano){
-                todosEventos = (frase.append(dataPesquisada.get(i)).append(";")
-                    .toString());
+            if (dataPesquisada.get(i).length() > 8) {
+                if (Integer.parseInt(dadosComSplit[2]) == ano){
+                    todosEventos = (frase.append(dataPesquisada.get(i))
+                            .append(";").toString());
+                }
+            }
+            else {
+                if ((Integer.parseInt(dataPesquisada.get(i)) % 10000) == ano){
+                    todosEventos = (frase.append(dataPesquisada.get(i))
+                           .append(";").toString());                   
+                }
             }
         }
         if ("".equals(todosEventos)){
