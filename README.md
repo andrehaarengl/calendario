@@ -6,10 +6,10 @@
 
 Esse projeto foi desenvolvido em virtude de atender a proposta do projeto final da disciplina Método de Desenvolvimento de Software, do curso de Engenharia de Software, do INF-UFG, ministrada pelo professor Marcelo Quinta. Os integrantes do grupo e participantes do projeto são:
 
-> Murillo S. Nunes
-> Murilo de Oliveira Silva
-> Paulo Sales
-> André Haarengl
+> Murillo S. Nunes<br />
+> Murilo de Oliveira Silva<br />
+> Paulo Sales<br />
+> André Haarengl<br />
 > Gabriel Menezes
 
 ## Como usar?
