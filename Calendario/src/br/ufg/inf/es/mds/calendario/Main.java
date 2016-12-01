@@ -32,7 +32,7 @@ public class Main {
         while(opcaoDeEntrada != 5){
             if (opcaoDeEntrada == 1) {
                 System.out.println("\nAgora você está logado como usuário.");
-                int opcaoDoMenu = 0;
+                int opcaoDoMenu;
                 Main.menuUsuario();
                 opcaoDoMenu = Integer.parseInt(ler.nextLine());
                 while (opcaoDoMenu == 1 || opcaoDoMenu == 2 ||
@@ -51,9 +51,9 @@ public class Main {
                             System.out.println("\nO que deseja fazer agora?");
                             break;
                         case 2:
-                            String nomeDoEventoDaBusca = "";
-                            String regionalDoEventoDaBusca = "";
-                            int anoDaBusca = 0;
+                            String nomeDoEventoDaBusca;
+                            String regionalDoEventoDaBusca;
+                            int anoDaBusca;
                             System.out.println("\nVocê pode buscar um evento de"
                                     + " duas formas:\n"
                                     + "1 - Em todos os anos de calendários"
@@ -98,7 +98,7 @@ public class Main {
                             }
                         case 9:
                             System.out.println("Você finalizou a aplicação.");
-                            break;
+                            System.exit(0);
                     }
                     
                     Main.menuUsuario();
@@ -108,7 +108,7 @@ public class Main {
         
             if (opcaoDeEntrada == 2) {
                 int resultado;
-                int opcaoDoMenu = 0;
+                int opcaoDoMenu;
                 resultado = admin.login();
                 while (resultado != 0 ) {    
                     System.out.println(" Usuário e senha não conferem, digite"
@@ -127,17 +127,26 @@ public class Main {
                         case 1:
                             System.out.println(
                                     "Digite o ano para o calendário:");
-                            int ano = 0;
+                            int ano;
                             ano = Integer.parseInt(ler.nextLine());
                             System.out.println("Digite a regional:");
-                            String regional = "";
+                            String regional;
                             regional = ler.nextLine();
-                            Calendario calendar = new Calendario(ano, regional);
-                            System.out.println("Você criou o calendário " +
-                                    calendar.getNomeRegional() + " " +
-                                    calendar.getAnoCalendario());
-                            System.out.println("\nO que deseja fazer agora?");
-                            break;
+                            int numeroDaRegional = novaLista.getNumeroRegional(
+                                    regional);
+                            if (control.verificaAnoExistente(
+                                    ano, numeroDaRegional)) {
+                                System.out.println(
+                                        "Esse calendário já existe!");
+                                break;
+                            } else {
+                                Calendario calendar = new Calendario(
+                                        ano, regional);
+                                System.out.println("Calendário criado!");
+                                System.out.println(
+                                        "\nO que deseja fazer agora?");
+                                break;
+                            }
                         case 2:
                             System.out.println("Digite a data do evento:");
                             String data = ler.nextLine();
@@ -167,9 +176,9 @@ public class Main {
                             System.out.println("\nO que deseja fazer agora?");
                             break;
                         case 4:
-                            String nomeDoEventoDaBusca = "";
-                            String regionalDoEventoDaBusca = "";
-                            int anoDaBusca = 0;
+                            String nomeDoEventoDaBusca;
+                            String regionalDoEventoDaBusca;
+                            int anoDaBusca;
                             System.out.println("Você pode buscar um evento de"
                                     + " duas formas:\n"
                                     + "1 - Em todos os anos de calendários"
@@ -214,7 +223,7 @@ public class Main {
                             }
                         case 9:
                             System.out.println("Você finalizou a aplicação.");
-                            break;
+                            System.exit(0);
                     }
                     
                     Main.menuPrincipal();
@@ -233,6 +242,8 @@ public class Main {
             System.out.println(" Para encerrar o programa, digite 5");
             opcaoDeEntrada = Integer.parseInt(ler.nextLine());
         }
+        
+        System.exit(0);
     }
     
     public static void menuPrincipal() {
