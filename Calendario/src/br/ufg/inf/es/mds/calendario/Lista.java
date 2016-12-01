@@ -6,7 +6,6 @@ package br.ufg.inf.es.mds.calendario;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  * 
  * @author Murilo de Oliveira.
  * @since Nov 2016
- * @version 4.5
+ * @version 4.6
  */
 public class Lista {
     
@@ -28,12 +27,10 @@ public class Lista {
     private ArrayList<String> eventosCatalao = new ArrayList();
 
     public Lista() throws FileNotFoundException, IOException {
-        File file = new File("eventos.txt");
-        
-        FileReader leituraFile = new FileReader("eventos.txt");
+        FileReader leituraFile = new FileReader("/home/aluno/Documentos/"
+                + "minhalista/eventos.txt");
         BufferedReader leituraBr = new BufferedReader(leituraFile);
         String linha = leituraBr.readLine();
-        String repeticao = linha;
         if (linha != null){
             do {
                 String[] dadosComSplit;
@@ -46,7 +43,7 @@ public class Lista {
                         dadosComSplit[2] = "goias";
                         break;
                     case 2:
-                        dadosComSplit[3] = "jatai";
+                        dadosComSplit[2] = "jatai";
                         break;
                     case 3:
                         dadosComSplit[2] = "catalao";
@@ -54,9 +51,10 @@ public class Lista {
                     default:
                         break;
                 }
-                setEvento(dadosComSplit[0], dadosComSplit[1], dadosComSplit[2]);
+                setEvento(dadosComSplit[0], dadosComSplit[1], dadosComSplit[2]
+                        , 2);
                 linha = leituraBr.readLine();
-            }while (!repeticao.equals(linha));
+            }while (linha != null);
         }
         leituraBr.close();
         leituraFile.close();
@@ -74,7 +72,8 @@ public class Lista {
     public void setEvento(String data, String evento, String regional)
             throws IOException {
         StringBuilder frase = new StringBuilder();
-        FileWriter eventos = new FileWriter("eventos.txt",
+        FileWriter eventos = new FileWriter("/home/aluno/Documentos/minhalista/"
+                + "eventos.txt",
                 true);
         BufferedWriter gravarEvento = new BufferedWriter(eventos);
         int numRegional = getNumeroRegional(regional);        
@@ -84,26 +83,52 @@ public class Lista {
             case 0:
                 eventosGoiania.add(frase.toString());
                 gravarEvento.write(frase.toString());
-                gravarEvento.newLine();
+                gravarEvento.write("\r\n");
                 gravarEvento.close();
                 break;
             case 1:
                 eventosGoias.add(frase.toString());
                 gravarEvento.write(frase.toString());
-                gravarEvento.newLine();
+                gravarEvento.write("\r\n");
                 gravarEvento.close();
                 break;
             case 2:
                 eventosJatai.add(frase.toString());
                 gravarEvento.write(frase.toString());
-                gravarEvento.newLine();
+                gravarEvento.write("\r\n");
                 gravarEvento.close();
                 break;
             case 3:
                 eventosCatalao.add(frase.toString());
                 gravarEvento.write(frase.toString());
-                gravarEvento.newLine();
+                gravarEvento.write("\r\n");
                 gravarEvento.close();
+                break;
+            default:
+                break;
+        }
+        if (numRegional == 99) {
+            System.out.println("Regional Inválida");
+        }
+    }
+    public void setEvento(String data, String evento, String regional, 
+            int protocolo) throws IOException {
+        StringBuilder frase = new StringBuilder();
+        int numRegional = getNumeroRegional(regional);        
+        frase.append(data).append(";").append(evento).append(";")
+                .append(numRegional);
+        switch (numRegional) {
+            case 0:
+                eventosGoiania.add(frase.toString());
+                break;
+            case 1:
+                eventosGoias.add(frase.toString());
+                break;
+            case 2:
+                eventosJatai.add(frase.toString());
+                break;
+            case 3:
+                eventosCatalao.add(frase.toString());
                 break;
             default:
                 break;
@@ -133,7 +158,7 @@ public class Lista {
         int numRegional = getNumeroRegional(regional);
         if (numRegional == 99) {
             System.out.println("Regional inválida");
-            return "Nenhuma";
+            return "1";
         }
         int i;
         switch (numRegional) {
@@ -171,17 +196,13 @@ public class Lista {
             default:
                 break;
         }
-        
-        for (i = 0; i < getTamanhoLista(dataPesquisada); i++) {
-            System.out.println(dataPesquisada.get(i));
-        }
         StringBuilder frase = new StringBuilder();
         for (i = 0; i < getTamanhoLista(dataPesquisada); i++) {
-            todosEventos = frase.append(dataPesquisada.get(i)).append(";")
+            todosEventos = frase.append(dataPesquisada.get(i)).append("\n")
                     .toString();
         }
         if ("".equals(todosEventos)){
-            return "Nenhuma";
+            return "1";
         }
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;
@@ -208,7 +229,7 @@ public class Lista {
         int numRegional = getNumeroRegional(regional);
         if (numRegional == 99) {
             System.out.println("Regional inválida");
-            return "Nenhuma";
+            return "1";
         }
         int i;
         switch (numRegional) {
@@ -252,18 +273,18 @@ public class Lista {
             if (dataPesquisada.get(i).length() > 8) {
                 if (Integer.parseInt(dadosComSplit[2]) == ano){
                     todosEventos = (frase.append(dataPesquisada.get(i))
-                            .append(";").toString());
+                            .append("\n").toString());
                 }
             }
             else {
                 if ((Integer.parseInt(dataPesquisada.get(i)) % 10000) == ano){
                     todosEventos = (frase.append(dataPesquisada.get(i))
-                           .append(";").toString());                   
+                           .append("\n").toString());                   
                 }
             }
         }
         if ("".equals(todosEventos)){
-            return "Nenhuma";
+            return "1";
         }
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;
@@ -285,7 +306,7 @@ public class Lista {
         int numRegional = getNumeroRegional(regional);
         if (numRegional == 99) {
             System.out.println("Regional inválida");
-            return "Nenhum";
+            return "1";
         }
         int i;
         switch (numRegional) {
@@ -326,11 +347,11 @@ public class Lista {
         }
         StringBuilder frase = new StringBuilder();
         for (i = 0; i < getTamanhoLista(eventoPesquisado); i++) {
-            todosEventos = (frase.append(eventoPesquisado.get(i)).append(";")
+            todosEventos = (frase.append(eventoPesquisado.get(i)).append("\n")
                     .toString());
         }
         if ("".equals(todosEventos)){
-            return "Nenhum";
+            return "1";
         }
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;
