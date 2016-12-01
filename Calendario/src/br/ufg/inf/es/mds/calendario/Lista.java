@@ -133,7 +133,7 @@ public class Lista {
         int numRegional = getNumeroRegional(regional);
         if (numRegional == 99) {
             System.out.println("Regional inválida");
-            return "1";
+            return "Nenhuma";
         }
         int i;
         switch (numRegional) {
@@ -181,7 +181,7 @@ public class Lista {
                     .toString();
         }
         if ("".equals(todosEventos)){
-            return "1";
+            return "Nenhuma";
         }
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;
@@ -208,7 +208,7 @@ public class Lista {
         int numRegional = getNumeroRegional(regional);
         if (numRegional == 99) {
             System.out.println("Regional inválida");
-            return "1";
+            return "Nenhuma";
         }
         int i;
         switch (numRegional) {
@@ -263,7 +263,7 @@ public class Lista {
             }
         }
         if ("".equals(todosEventos)){
-            return "1";
+            return "Nenhuma";
         }
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;
@@ -285,7 +285,7 @@ public class Lista {
         int numRegional = getNumeroRegional(regional);
         if (numRegional == 99) {
             System.out.println("Regional inválida");
-            return "1";
+            return "Nenhum";
         }
         int i;
         switch (numRegional) {
@@ -330,7 +330,7 @@ public class Lista {
                     .toString());
         }
         if ("".equals(todosEventos)){
-            return "1";
+            return "Nenhum";
         }
         String subString = todosEventos.substring(0,todosEventos.length() - 1);
         return subString;

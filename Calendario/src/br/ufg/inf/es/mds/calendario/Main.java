@@ -68,7 +68,7 @@ public class Main {
                                 System.out.println("Digite o nome da regional"
                                         + " do evento:");
                                 regionalDoEventoDaBusca = ler.nextLine();
-                                System.out.println("Datas encontradas:\n" +
+                                System.out.println("Datas encontradas:\n    " +
                                         novaLista.getDataEvento(
                                                 nomeDoEventoDaBusca,
                                                 regionalDoEventoDaBusca));
@@ -85,7 +85,8 @@ public class Main {
                                             + " evento:");
                                     anoDaBusca = Integer.parseInt(
                                             ler.nextLine());
-                                    System.out.println("Datas encontradas:\n" +
+                                    System.out.println(
+                                            "Datas encontradas:\n    " +
                                             novaLista.getDataEvento(
                                                     nomeDoEventoDaBusca,
                                                     regionalDoEventoDaBusca,
@@ -169,7 +170,7 @@ public class Main {
                             System.out.println("Digite o nome da regional:");
                             String regionalDaPesquisa = ler.nextLine();
                             System.out.println("    Eventos encontrados para"
-                                    + " essa data:\n" +
+                                    + " essa data:\n    " +
                                     novaLista.getStringEvento(
                                             dataDaPesquisa,
                                             regionalDaPesquisa));
@@ -179,7 +180,7 @@ public class Main {
                             String nomeDoEventoDaBusca;
                             String regionalDoEventoDaBusca;
                             int anoDaBusca;
-                            System.out.println("Você pode buscar um evento de"
+                            System.out.println("\nVocê pode buscar um evento de"
                                     + " duas formas:\n"
                                     + "1 - Em todos os anos de calendários"
                                     + " existentes\n"
@@ -193,7 +194,7 @@ public class Main {
                                 System.out.println("Digite o nome da regional"
                                         + " do evento:");
                                 regionalDoEventoDaBusca = ler.nextLine();
-                                System.out.println("Datas encontradas:\n" +
+                                System.out.println("Datas encontradas:\n    " +
                                         novaLista.getDataEvento(
                                                 nomeDoEventoDaBusca,
                                                 regionalDoEventoDaBusca));
@@ -210,7 +211,8 @@ public class Main {
                                             + " evento:");
                                     anoDaBusca = Integer.parseInt(
                                             ler.nextLine());
-                                    System.out.println("Datas encontradas:\n" +
+                                    System.out.println(
+                                            "Datas encontradas:\n    " +
                                             novaLista.getDataEvento(
                                                     nomeDoEventoDaBusca,
                                                     regionalDoEventoDaBusca,
