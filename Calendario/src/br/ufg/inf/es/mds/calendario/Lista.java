@@ -4,6 +4,13 @@
  */
 package br.ufg.inf.es.mds.calendario;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -11,14 +18,47 @@ import java.util.ArrayList;
  * 
  * @author Murilo de Oliveira.
  * @since Nov 2016
- * @version 3.2
+ * @version 4.5
  */
 public class Lista {
-
+    
     private ArrayList<String> eventosGoiania = new ArrayList();
     private ArrayList<String> eventosGoias = new ArrayList();
     private ArrayList<String> eventosJatai = new ArrayList();
     private ArrayList<String> eventosCatalao = new ArrayList();
+
+    public Lista() throws FileNotFoundException, IOException {
+        FileReader leituraFile = new FileReader("C:\\calendario\\eventos.txt");
+        BufferedReader leituraBr = new BufferedReader(leituraFile);
+        String linha = leituraBr.readLine();
+        String repeticao = linha;
+        if (linha != null){
+            do {
+                String[] dadosComSplit;
+                dadosComSplit = linha.split(";");
+                switch (Integer.parseInt(dadosComSplit[2])) {
+                    case 0:
+                        dadosComSplit[2] = "goiania";
+                        break;
+                    case 1:
+                        dadosComSplit[2] = "goias";
+                        break;
+                    case 2:
+                        dadosComSplit[3] = "jatai";
+                        break;
+                    case 3:
+                        dadosComSplit[2] = "catalao";
+                        break;
+                    default:
+                        break;
+                }
+                setEvento(dadosComSplit[0], dadosComSplit[1], dadosComSplit[2]);
+                linha = leituraBr.readLine();
+            }while (!repeticao.equals(linha));
+        }
+        leituraBr.close();
+        leituraFile.close();
+    }
     
     /**
      * Adiciona um evento à regional correspondente.
@@ -29,23 +69,39 @@ public class Lista {
      *
      * @param regional String referente ao nome da regional.
      */
-    public void setEvento(String data, String evento, String regional) {
+    public void setEvento(String data, String evento, String regional)
+            throws IOException {
         StringBuilder frase = new StringBuilder();
+        FileWriter eventos = new FileWriter("C:\\calendario\\eventos.txt",
+                true);
+        BufferedWriter gravarEvento = new BufferedWriter(eventos);
         int numRegional = getNumeroRegional(regional);        
         frase.append(data).append(";").append(evento).append(";")
                 .append(numRegional);
         switch (numRegional) {
             case 0:
                 eventosGoiania.add(frase.toString());
+                gravarEvento.write(frase.toString());
+                gravarEvento.newLine();
+                gravarEvento.close();
                 break;
             case 1:
                 eventosGoias.add(frase.toString());
+                gravarEvento.write(frase.toString());
+                gravarEvento.newLine();
+                gravarEvento.close();
                 break;
             case 2:
                 eventosJatai.add(frase.toString());
+                gravarEvento.write(frase.toString());
+                gravarEvento.newLine();
+                gravarEvento.close();
                 break;
             case 3:
                 eventosCatalao.add(frase.toString());
+                gravarEvento.write(frase.toString());
+                gravarEvento.newLine();
+                gravarEvento.close();
                 break;
             default:
                 break;
